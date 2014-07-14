@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2013 Hani Naguib.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Public License v3.0
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/gpl.html
+  
+  Contributors:
+      Hani Naguib - initial API and implementation
+-->
+<settings>
+
+	<servers>
+		<server>
+			<id>github</id>
+			<password>YOUR_PASSWORD</password>
+		</server>
+	</servers>
+
+	<profiles>
+		<profile>
+			<id>gvmax-sonar</id>
+			<properties>
+				<sonar.host.url>URL</sonar.host.url>
+				<sonar.jdbc.url>jdbc:mysql://URL:3306/sonar</sonar.jdbc.url>
+				<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
+				<sonar.jdbc.username>sonar</sonar.jdbc.username>
+				<sonar.jdbc.password>PASSWORD</sonar.jdbc.password>
+
+				<sonar.language>java</sonar.language>
+				<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+				<sonar.code.coveragePlugin>jacoco</sonar.code.coveragePlugin>
+				<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+				<sonar.jacoco.reportPath>${main.basedir}/target/jacoco.exec</sonar.jacoco.reportPath>
+				<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
+				<sonar.jacoco.itReportPath>${main.basedir}/target/jacoco.exec</sonar.jacoco.itReportPath>
+			</properties>
+		</profile>
+	</profiles>
+
+
+</settings>

@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/MainTemplate.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="GVMax for Google Voice" />
+<meta name="keywords" content="gvmax, google voice" />
+<script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery.validate.js"></script> 		
+<script type="text/javascript" src="js/jquery.tooltip.min.js"></script>		
+<script type="text/javascript" language="javascript" src="js/gvmax.js"></script>
+<script type="text/javascript" language="javascript" src="js/login_1.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="css/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="css/jquery.tooltip.css" />
+<link rel="stylesheet" type="text/css" href="css/gvmax.css" />
+<style type="text/css">
+	label { width: 15em; float: left; }
+	label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+	.submit { margin-left: 12em; }
+</style>
+
+
+
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>GVMax</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+	<div id="wrap">		
+		<div id="container">
+			<div id="header"></div>
+            <div id="loginLink">
+				<button id="loginButton" style="display:none">Login</button> 
+       			<div id="loginDialog" title="Login" style="display:none">
+                    <form id="loginForm" action="">
+                        <p>
+                            <label for="email">Email Address</label>
+                            <input name="email" type="text"/>
+                        </p>
+                        <p>
+                            <label for="password">Password</label> 
+                            <input name="password" type="password"/>
+                        </p>
+                        <p>
+                            <input type="submit" value="Login"/>
+                            <button id="loginCancelButton">Cancel</button>
+                        </p> 
+                    </form>
+                    <div id="loginLinksDiv">
+                        <a id="singupLink" href="/signup">Sign up</a>
+                        <a id="forgotPasswordLink" href="/forgotPassword">Forgot Password</a>
+                    </div>
+            	</div>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a id="accountLink" href="account/">My Account</a></li>
+                    <li><a title="User Manual" href="manual/">User Manual</a></li>
+                    <li><a title="Support" href="support/">Support</a></li>
+                    <li><a title="Developer" href="developers/">Developers</a></li>
+                    <li><a title="On the news" href="references/">On the news</a></li>
+                </ul>
+            </div>
+            <div id="content">
+            	<div id="serverDown" style="display:none">GVMax is currently under maintenance please come back later.</div>
+            	<div class="heading"> 
+<!-- InstanceBeginEditable name="heading" -->
+				Welcome to GVMax
+<!-- InstanceEndEditable -->
+                </div>
+<!-- InstanceBeginEditable name="content" -->
+		<table >
+		<tr>
+			<td colspan="2" align="center">
+			<a href="signup"><span style="font-size: 18px">Click Here To Start Using GVMax</span></a>
+			</td>
+		</tr>
+		<tr valign="top" >
+		<td width="50%" style="padding-right: 10px">
+			<h3>Making the most of Google Voice</h3>
+			GVMax is a free webservice that monitors your Google Voice account and notifies you when you receive  
+			new SMS or Voicemail. GVMax can send you notifications in a number of ways including via Instant Messaging (XMPP/GoogleTalk),
+			emails, Prowl and Howl notifications, Twitter, HttpPost and SMS (more on the way). The following videos show GVMax in action.
+			<br/><br/> 
+			<a href="http://www.youtube.com/watch?v=Cm4yNU-TG8o" target="_blank">
+			<img src="images/iphone.png" border="0"/>
+			<br/>
+			GVMax on the IPhone
+			</a>
+		</td>
+		<td>
+		<h3>Features</h3>
+        	<ul>
+        		<li><b>Easy setup</b> <a href="signup">Signing up</a> is as simple as filling in a form. GVMax will do the rest.</li>
+                <li><b>Notifications in seconds</b> It only takes GVMax a few seconds to send you your notifications.</li>
+        		<li><b>Runs 24/7</b> No need for you to keep your machine running, GVMax works 24/7.</li>
+            	<li><b>Notifications on your phone</b> Even the native Android GoogleVoice application will only
+                	check for new SMS every 5 minutes. With GVMax you get then in seconds.</li> 
+                <li><b>Notifications on your desktop</b> Receive SMS and Voicemail on any computer. GVMax forwards 
+                your messages to any IM client that supports Google Talk.</li>
+                <li><b>100% Free</b>. GVMax is a free service. I develop it as a hobby and as a way to try out new technologies.</li>
+                <li><b>More features</b> Please have a look at the <a href="manual/">User Manual</a> for
+            	a complete list.                </li>
+            </ul>
+		</td>
+		</tr>
+		</table>
+		<br/>
+        <h3>Extending your number's capabilities</h3>
+        GVMax is more than a simple sms and voicemail notifier, here are some other features it provides.
+        	<ul>
+        		<li><b>Initiate calls from IM client.</b> You can place Google Voice calls right from your IM client. No need to log into Google Voice (especially handy on phones)</li>
+                <li><b>Send SMS to Groups</b>. GVMax can send SMS to a group of people. You write the SMS once and it is sent to all 
+                members of a Google Contacts Group.</li>
+               	<li><b>Turn your Google Voice number into a hub</b>. You can setup your number to automatically broadcast any received SMS to a number of phones. Great for a family communication number.</li> 
+                <li><b>More to come.</b> I am working on a number of ideas to further extend what you will be able to do with your Google Voice number. Stay tuned...</li>
+            </ul>
+<!-- InstanceEndEditable -->
+                <br/>		
+                <center>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="7949967">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                </center>
+			</div>
+            
+       		<div id="footer">
+			  Copyright &copy; 2009/10 GVMax. <a href="privacy/">Privacy and Security</a><br/>
+				Follow GVMax on <a href="http://twitter.com/gvmax" target="_blank">Twitter</a> or on my <a href="http://gvmax-at.blogspot.com/" target="_blank">Blog</a>.
+			</div>	
+            
+       		<div id="messageBox" style="display:none">
+				<span id="messageBox-msg"></span>
+			</div>
+
+            <div id="waitBox" style="display:none">
+                <p id="waitBox-msg"></p>
+                <div id="progressbar"></div>
+            </div>	
+
+			<div id="forgotPasswordDialog" title="Password Retrieval" style="display:none">
+				<form id="forgotPasswordForm" method="post">
+					<div>
+						<label for="email">Your account's email address</label>
+						<input id="email" name="email" type="text"/>
+					</div>
+					<div>
+						<input id="forgotPasswordButton" type="submit" value="Submit"/>
+						<input id="forgotPasswordCancelButton" type="button" value="Cancel" />
+					</div>
+				</form>
+			</div>
+                
+	  </div>
+    </div>    
+    
+	<script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-10570095-1");
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>	
+    
+</body>
+
+<!-- InstanceEnd --></html>

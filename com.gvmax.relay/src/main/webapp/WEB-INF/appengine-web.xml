@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copyright (c) 2013 Hani Naguib.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Public License v3.0
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/gpl.html
+  
+  Contributors:
+      Hani Naguib - initial API and implementation
+-->
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+	<application>gvmax-test</application>
+	<version>relay</version>
+	<threadsafe>true</threadsafe>
+	<ssl-enabled>true</ssl-enabled>
+	<sessions-enabled>false</sessions-enabled>
+	<precompilation-enabled>true</precompilation-enabled>
+	<inbound-services>
+		<service>mail</service>
+		<service>xmpp_message</service>
+	</inbound-services>
+
+	<system-properties>
+		<property name="java.util.logging.config.file" value="WEB-INF/classes/logging.properties" />
+	</system-properties>
+</appengine-web-app>

@@ -1,0 +1,402 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/MainTemplate.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="GVMax for Google Voice" />
+<meta name="keywords" content="gvmax, google voice" />
+<script type="text/javascript" src="../js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/jquery.tooltip.min.js"></script>
+<script type="text/javascript" language="javascript" src="../js/gvmax.js"></script>
+<script type="text/javascript" language="javascript" src="../js/login_1.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery.tooltip.css" />
+<link rel="stylesheet" type="text/css" href="../css/gvmax.css" />
+<style type="text/css">
+	label { width: 15em; float: left; }
+	label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+	.submit { margin-left: 12em; }
+</style>
+
+
+
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>GVMax</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="container">
+			<div id="header"></div>
+            <div id="loginLink">
+				<button id="loginButton" style="display:none">Login</button>
+       			<div id="loginDialog" title="Login" style="display:none">
+                    <form id="loginForm" action="">
+                        <p>
+                            <label for="email">Email Address</label>
+                            <input name="email" type="text"/>
+                        </p>
+                        <p>
+                            <label for="password">Password</label>
+                            <input name="password" type="password"/>
+                        </p>
+                        <p>
+                            <input type="submit" value="Login"/>
+                            <button id="loginCancelButton">Cancel</button>
+                        </p>
+                    </form>
+                    <div id="loginLinksDiv">
+                        <a id="singupLink" href="/signup">Sign up</a>
+                        <a id="forgotPasswordLink" href="/forgotPassword">Forgot Password</a>
+                    </div>
+            	</div>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a id="accountLink" href="../account/">My Account</a></li>
+                    <li><a title="User Manual" href="../manual/">User Manual</a></li>
+                    <li><a title="Support" href="../support/">Support</a></li>
+                    <li><a title="Developer" href="../developers/">Developers</a></li>
+                    <li><a title="On the news" href="../references/">On the news</a></li>
+                </ul>
+            </div>
+            <div id="content">
+            	<div id="serverDown" style="display:none">GVMax is currently under maintenance please come back later.</div>
+            	<div class="heading">
+<!-- InstanceBeginEditable name="heading" -->
+<!-- InstanceEndEditable -->
+                </div>
+<!-- InstanceBeginEditable name="content" -->
+<style type="text/css">
+	label { width: 15em; float: left;}
+	label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+	.submit { margin-left: 12em; }
+	.l { font-size: 80% }
+	.ll { border:0px; border-top: 1px dotted gray; font-size: 90%; color: gray}
+	#actionPanel { text-align: right; }
+	fieldset { text-align: left; }
+</style>
+<script type="text/javascript" language="javascript" src="../js/jquery.populate.pack.js"></script>
+<script type="text/javascript" language="javascript" src="../js/account.js"></script>
+<div class="heading">My Account</div>
+<fieldset>
+	<br/>
+	<label>Google Voice Email Address</label> : <span id="user_email"></span>
+	<img src="../images/info.gif" title="The Google Voice email GVMax is monitoring for you"/><br/>
+	<label>Forward Email</label> : <span id="user_pin_email"></span>
+	<img src="../images/info.gif" title="The email address Google Voice emails should be forwarded to"/><br/>
+	<label>API key</label> : <span id="user_pin"></span>
+	<img src="../images/info.gif" title="Used by developers only."/><br/>
+	<br/>
+	<label>SMS received</label> : <span id="stats_smsInCount"></span><br/>
+	<label>Voicemail received</label> : <span id="stats_vmInCount"></span> <br/>
+	<label>Missed calls received</label> : <span id="stats_mcInCount"></span> <br/>
+	<label>SMS sent</label> : <span id="stats_smsOutCount"></span><br/>
+	<br/>
+	<label>Active Monitors</label>: <button id="changeMonitorsButton">Change</button> <span id="user_monitors"></span>
+	<img src="../images/info.gif" title="What GVMax should notify you about. - Click on the Change button to change this"/><br/>
+	<label>Active Notifiers</label>: <button id="changeNotifiersButton">Change</button> <span id="user_notifiers"></span>
+	<img src="../images/info.gif" title="How GVMax should notify you. - Click on the Change button to review and change this"/><br/>
+	<br/>
+</fieldset>
+<br/>
+<div id="actionPanel">
+    <button id="unregisterButton" title="Deletes your account.">Unregister</button>
+    <button id="changePasswordButton" title="Change your GVMax password">Change password</button>
+	<button id="enableGVButton" title="Start using your Google Voice password, this will allow you to send and reply to SMSs.">Use Google Voice Password</button>
+	<button id="createFilterButton" title="Create appropriate GMail filters for GVMax. NOTE: Your Google Voice password will NOT be stored and is only used to create the filter.">Create Google Voice Filter</button>
+</div>
+
+	<!-- DIALOGS -->
+	<div id="changeMonitorsDialog" title="Change Monitors" style="display:none">
+		<form id="changeMonitorsForm" action="" class="">
+			<fieldset class="l">
+				<p>
+					<label for="monitorSMS">Monitor SMS</label>
+					<input id="monitorSMS" name="monitorSMS" type="checkbox" value="true"/>
+				</p>
+				<p>
+					<label for="monitorVM">Monitor Voicemail</label>
+					<input id="monitorVM" name="monitorVM" type="checkbox" value="true"/>
+				</p>
+				<p>
+					<label for="monitorMC">Monitor Missed Calls</label>
+					<input id="monitorMC" name="monitorMC" type="checkbox" value="true"/>
+				</p>
+			</fieldset>
+			<p>
+				<input type="submit" value="Save"/>
+				<button id="cancelChangeMonitorsButton">Cancel</button>
+			</p>
+		</form>
+	</div>
+
+	<div id="changeNotifiersDialog" title="Change Notifiers" style="display:none">
+		<form id="changeNotifiersForm" action="" class="">
+			<input id="wc" name="wc" type="hidden" value="true"/>
+			<table>
+			<tr valign="top">
+			<td width="50%">
+				<fieldset class="l">
+					<legend>Notifiers</legend>
+					<p>
+						<input id="sendGTalk" name="sendGTalk" type="checkbox" value="true"/>
+						<span for="sendGTalk">Send GTalk Notifications</span>
+					</p>
+					<fieldset class="ll" id="xmppOptions">
+						<p>
+							<label for="gTalkEmail">GTalk Address</label>
+							<input id="gTalkEmail" name="gTalkEmail" type="text" />
+							<img src="../images/info.gif" title="Your Google Talk address. - Note this does not have to be the same as your Google Voice address. - You can create a new GTalk account specifically for GVMax"/><br/>
+						</p>
+						<p>
+							<label for="gTalkPassword">GTalk Password</label>
+							<input id="gTalkPassword" name="gTalkPassword" type="password" }" />
+							<img src="../images/info.gif" title="The password for the Google Talk address"/><br/>
+						</p>
+						<p>
+							<label for="gTalkGroup">GTalk Group</label>
+							<input id="gTalkGroup" name="gTalkGroup" type="text" />
+							<img src="../images/info.gif" title="Name of the group GVMax contacts should be added to. - This can be anything you like"/><br/>
+						</p>
+					</fieldset>
+					<p>
+						<input id="sendProwl" name="sendProwl" type="checkbox" value="true" />
+						<span for="sendProwl">Send Prowl notifications</span>
+					</p>
+					<fieldset class="ll" id="prowlOptions">
+						<p>
+							<label for="prowlApiKeys">Prowl API Keys</label>
+							<input id="prowlApiKeys" name="prowlApiKeys" type="text" size="50"/>
+							<img src="../images/info.gif" title="Your prowl API keys. - You can enter multiple keys by separating them with a comma. - TIP: If you have prowl you should enter its key here even if you don't choose to get Prowl notifications. - This will enable GVMax to fallback to Prowl notifications in case other notifications fail."/><br/>
+						</p>
+						<p>
+							<label for="prowlSMSPriority">SMS Priority</label>
+							<select id="prowlSMSPriority" name="prowlSMSPriority">
+								<option value="-3">DONT SEND</option>
+								<option value="-2">Very Low</option>
+								<option value="-1">Moderate</option>
+								<option value="0">Normal</option>
+								<option value="1">High</option>
+								<option value="2">Emergency</option>
+							</select>
+							<br/>
+							<label for="prowlVMPriority">Voicemail Priority</label>
+							<select id="prowlVMPriority" name="prowlVMPriority">
+								<option value="-3">DONT SEND</option>
+								<option value="-2">Very Low</option>
+								<option value="-1">Moderate</option>
+								<option value="0">Normal</option>
+								<option value="1">High</option>
+								<option value="2">Emergency</option>
+							</select>
+							<br/>
+							<label for="prowlMCPriority">Missed Calls Priority</label>
+							<select id="prowlMCPriority" name="prowlMCPriority">
+								<option value="-3">DONT SEND</option>
+								<option value="-2">Very Low</option>
+								<option value="-1">Moderate</option>
+								<option value="0">Normal</option>
+								<option value="1">High</option>
+								<option value="2">Emergency</option>
+							</select>
+						</p>
+					</fieldset>
+					<p>
+						<input id="sendEmail" name="sendEmail" type="checkbox" value="true"/>
+						<span for="sendEmail">Send Email notifications</span>
+					</p>
+					<fieldset class="ll" id="emailOptions">
+						<p>
+							<label for="emailAddresses">Email addresses</label>
+							<input id="emailAddresses" name="emailAddresses" type="text"/>
+							<img src="../images/info.gif" title="Email address - You can send notifications to multiple email addresses by separating them with a comma. - TIP: You should enter an email address even if you don't choose to get Email notifications. - This will enable GVMax to fallback to Email notifications in case other notifications fail."/><br/>
+						</p>
+					</fieldset>
+				</fieldset>
+			</td>
+			<td>
+				<fieldset class="l">
+					<legend>Experimental</legend>
+					<p>
+						<input id="sendPost" name="sendPost" type="checkbox" value="true"/>
+						<span for="sendPost">Send Http Post notifications</span>
+					</p>
+					<fieldset class="ll" id="postOptions">
+						<p>
+							<label for="postURLs">Post URLs</label>
+							<input id="postURLs" name="postURLs" type="text"/>
+							<img src="../images/info.gif" title="List of URLs to invoke. - You can enter multiple urls by separating them with a comma"/><br/>
+						</p>
+					</fieldset>
+					<p>
+						<input id="sendTwitter" name="sendTwitter" type="checkbox" value="true"/>
+						<span for="sendTwitter">Send Twitter notifications</span>
+					</p>
+					<fieldset class="ll" id="twOptions">
+						<p>
+							<label for="twitterScreenName">Twitter Screen Name</label>
+							<input id="twitterScreenName" name="twitterScreenName" type="text"/>
+							<img src="../images/info.gif" title="The Twitter screen name to send notifications to. - Notifications are sent as direct message so you will need to subscribe to my-gv-max twitter account."/><br/>
+						</p>
+					</fieldset>
+					<p>
+						<input id="sendSMS" name="sendSMS" type="checkbox" value="true"/>
+						<span for="sendSMS">Send SMS</span>
+					</p>
+					<fieldset class="ll" id="smsOptions">
+						<p>
+							<label for="smsGroup">SMS Group</label>
+							<input id="smsGroup" name="smsGroup" type="text"/>
+							<img src="../images/info.gif" title="Name of Google Contacts group to send SMS to"/><br/>
+						</p>
+					</fieldset>
+
+					<p>
+						<input id="sendHowl" name="sendHowl" type="checkbox" value="true"/>
+						<span for="sendHowl">Send Howl notifications</span>
+					</p>
+					<fieldset class="ll" id="howlOptions">
+						<p>
+							<label for="howlUsername">Howl Username</label>
+							<input id="howlUsername" name="howlUsername" type="text"/>
+							<img src="../images/info.gif" title="Your Howl username."/><br/>
+						</p>
+						<p>
+							<label for="howlPassword">Howl Password</label>
+							<input id="howlPassword" name="howlPassword" type="password" }" />
+							<img src="../images/info.gif" title="Your Howl password"/><br/>
+						</p>
+					</fieldset>
+
+
+				</fieldset>
+			</td>
+			</tr>
+			<tr valign="top">
+				<td colspan="2">
+						<p>
+							<input id="sendAutoResponse" name="sendAutoResponse" type="checkbox" value="true"/>
+							<span for="sendAutoResponse">Send Auto Response</span>
+							<input id="autoResponse" name="autoResponse" type="text" maxlength="250" size="80"/>
+							<img src="../images/info.gif" title="Allows you to set a message that is automatically send as a response to SMS and voicemails."/><br/>
+						</p>
+				</td>
+			</tr>
+			</table>
+			<p>
+				<input type="submit" value="Save"/>
+				<button id="cancelChangeNotifiersButton">Cancel</button>
+			</p>
+		</form>
+	</div>
+
+	<div id="enableGVDialog" title="Enable Google Voice Integration" style="text-align: left;display:none">
+		<form id="enableGVForm" method="post" action="">
+			<p>
+				<label for="password">Google Voice Password</label>
+				<input id="password" name="password" type="password"/>
+			</p>
+			<p>
+				<input id="enableGVButton" type="submit" value="Enable GV"/>
+				<input id="cancelEnableGVButton" type="button" value="Cancel" />
+			</p>
+		</form>
+	</div>
+
+	<div id="createFilterDialog" title="Create Filter" style="text-align: left;display:none">
+		<form id="createFilterForm" method="post" action="">
+			<p>
+				<label for="password">Google Voice Password</label>
+				<input id="password" name="password" type="password"/>
+			</p>
+			<p>
+				<input id="doCreateFilterButton" type="submit" value="Create"/>
+				<input id="cancelCreateFilterButton" type="button" value="Cancel" />
+			</p>
+		</form>
+	</div>
+
+	<div id="changePasswordDialog" title="Change Password" style="text-align: left;display:none">
+		<form id="changePasswordForm" method="post" action="">
+			<p>
+				<label for="old_password">Existing Password</label>
+				<input id="old_password" name="old_password" type="password"/>
+			</p>
+			<p>
+				<label for="new_password">New Password</label>
+				<input id="new_password" name="new_password" type="password"/>
+			</p>
+			<p>
+				<label for="new_password_2">Retype New Password</label>
+				<input id="new_password_2" name="new_password_2" type="password"/>
+			</p>
+			<p>
+				<input id="changePasswordButton" type="submit" value="Change Password"/>
+				<input id="cancelChangePasswordButton" type="button" value="Cancel" />
+			</p>
+		</form>
+	</div>
+
+
+<!-- InstanceEndEditable -->
+                <br/>
+                <center>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="7949967">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                </center>
+			</div>
+
+       		<div id="footer">
+			  Copyright &copy; 2009/10 GVMax. <a href="../privacy/">Privacy and Security</a><br/>
+				Follow GVMax on <a href="http://twitter.com/gvmax" target="_blank">Twitter</a> or on my <a href="http://gvmax-at.blogspot.com/" target="_blank">Blog</a>.
+			</div>
+
+       		<div id="messageBox" style="display:none">
+				<span id="messageBox-msg"></span>
+			</div>
+
+            <div id="waitBox" style="display:none">
+                <p id="waitBox-msg"></p>
+                <div id="progressbar"></div>
+            </div>
+
+			<div id="forgotPasswordDialog" title="Password Retrieval" style="display:none">
+				<form id="forgotPasswordForm" method="post">
+					<div>
+						<label for="email">Your account's email address</label>
+						<input id="email" name="email" type="text"/>
+					</div>
+					<div>
+						<input id="forgotPasswordButton" type="submit" value="Submit"/>
+						<input id="forgotPasswordCancelButton" type="button" value="Cancel" />
+					</div>
+				</form>
+			</div>
+
+	  </div>
+    </div>
+
+	<script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-10570095-1");
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>
+
+</body>
+
+<!-- InstanceEnd --></html>

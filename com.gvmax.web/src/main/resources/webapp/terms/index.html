@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/MainTemplate.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="GVMax for Google Voice" />
+<meta name="keywords" content="gvmax, google voice" />
+<script type="text/javascript" src="../js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.js"></script> 		
+<script type="text/javascript" src="../js/jquery.tooltip.min.js"></script>		
+<script type="text/javascript" language="javascript" src="../js/gvmax.js"></script>
+<script type="text/javascript" language="javascript" src="../js/login_1.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery.tooltip.css" />
+<link rel="stylesheet" type="text/css" href="../css/gvmax.css" />
+<style type="text/css">
+	label { width: 15em; float: left; }
+	label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+	.submit { margin-left: 12em; }
+</style>
+
+
+
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>GVMax</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+	<div id="wrap">		
+		<div id="container">
+			<div id="header"></div>
+            <div id="loginLink">
+				<button id="loginButton" style="display:none">Login</button> 
+       			<div id="loginDialog" title="Login" style="display:none">
+                    <form id="loginForm" action="">
+                        <p>
+                            <label for="email">Email Address</label>
+                            <input name="email" type="text"/>
+                        </p>
+                        <p>
+                            <label for="password">Password</label> 
+                            <input name="password" type="password"/>
+                        </p>
+                        <p>
+                            <input type="submit" value="Login"/>
+                            <button id="loginCancelButton">Cancel</button>
+                        </p> 
+                    </form>
+                    <div id="loginLinksDiv">
+                        <a id="singupLink" href="/signup">Sign up</a>
+                        <a id="forgotPasswordLink" href="/forgotPassword">Forgot Password</a>
+                    </div>
+            	</div>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a id="accountLink" href="../account/">My Account</a></li>
+                    <li><a title="User Manual" href="../manual/">User Manual</a></li>
+                    <li><a title="Support" href="../support/">Support</a></li>
+                    <li><a title="Developer" href="../developers/">Developers</a></li>
+                    <li><a title="On the news" href="../references/">On the news</a></li>
+                </ul>
+            </div>
+            <div id="content">
+            	<div id="serverDown" style="display:none">GVMax is currently under maintenance please come back later.</div>
+            	<div class="heading"> 
+<!-- InstanceBeginEditable name="heading" -->
+				Terms 
+<!-- InstanceEndEditable -->
+                </div>
+<!-- InstanceBeginEditable name="content" -->
+		<p>
+		GVMax cannot be held responsible for failing to alert you about incoming SMS and Voicemail or failure 
+		in sending SMS. There is simply too many external factors that could cause these notifications to 
+		fail.
+		</p>
+		<p>
+		GVMax will only gather information required to provide you with the service. Your information will never be
+		made available to third parties.
+		</p>
+<!-- InstanceEndEditable -->
+                <br/>		
+                <center>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="7949967">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                </center>
+			</div>
+            
+       		<div id="footer">
+			  Copyright &copy; 2009/10 GVMax. <a href="../privacy/">Privacy and Security</a><br/>
+				Follow GVMax on <a href="http://twitter.com/gvmax" target="_blank">Twitter</a> or on my <a href="http://gvmax-at.blogspot.com/" target="_blank">Blog</a>.
+			</div>	
+            
+       		<div id="messageBox" style="display:none">
+				<span id="messageBox-msg"></span>
+			</div>
+
+            <div id="waitBox" style="display:none">
+                <p id="waitBox-msg"></p>
+                <div id="progressbar"></div>
+            </div>	
+
+			<div id="forgotPasswordDialog" title="Password Retrieval" style="display:none">
+				<form id="forgotPasswordForm" method="post">
+					<div>
+						<label for="email">Your account's email address</label>
+						<input id="email" name="email" type="text"/>
+					</div>
+					<div>
+						<input id="forgotPasswordButton" type="submit" value="Submit"/>
+						<input id="forgotPasswordCancelButton" type="button" value="Cancel" />
+					</div>
+				</form>
+			</div>
+                
+	  </div>
+    </div>    
+    
+	<script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-10570095-1");
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>	
+    
+</body>
+
+<!-- InstanceEnd --></html>

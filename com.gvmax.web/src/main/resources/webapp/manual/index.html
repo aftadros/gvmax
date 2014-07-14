@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/MainTemplate.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="GVMax for Google Voice" />
+<meta name="keywords" content="gvmax, google voice" />
+<script type="text/javascript" src="../js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.js"></script> 		
+<script type="text/javascript" src="../js/jquery.tooltip.min.js"></script>		
+<script type="text/javascript" language="javascript" src="../js/gvmax.js"></script>
+<script type="text/javascript" language="javascript" src="../js/login_1.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery.tooltip.css" />
+<link rel="stylesheet" type="text/css" href="../css/gvmax.css" />
+<style type="text/css">
+	label { width: 15em; float: left; }
+	label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+	.submit { margin-left: 12em; }
+</style>
+
+
+
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>GVMax</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+	<div id="wrap">		
+		<div id="container">
+			<div id="header"></div>
+            <div id="loginLink">
+				<button id="loginButton" style="display:none">Login</button> 
+       			<div id="loginDialog" title="Login" style="display:none">
+                    <form id="loginForm" action="">
+                        <p>
+                            <label for="email">Email Address</label>
+                            <input name="email" type="text"/>
+                        </p>
+                        <p>
+                            <label for="password">Password</label> 
+                            <input name="password" type="password"/>
+                        </p>
+                        <p>
+                            <input type="submit" value="Login"/>
+                            <button id="loginCancelButton">Cancel</button>
+                        </p> 
+                    </form>
+                    <div id="loginLinksDiv">
+                        <a id="singupLink" href="/signup">Sign up</a>
+                        <a id="forgotPasswordLink" href="/forgotPassword">Forgot Password</a>
+                    </div>
+            	</div>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a id="accountLink" href="../account/">My Account</a></li>
+                    <li><a title="User Manual" href="../manual/">User Manual</a></li>
+                    <li><a title="Support" href="../support/">Support</a></li>
+                    <li><a title="Developer" href="../developers/">Developers</a></li>
+                    <li><a title="On the news" href="../references/">On the news</a></li>
+                </ul>
+            </div>
+            <div id="content">
+            	<div id="serverDown" style="display:none">GVMax is currently under maintenance please come back later.</div>
+            	<div class="heading"> 
+<!-- InstanceBeginEditable name="heading" -->
+				User Manual
+<!-- InstanceEndEditable -->
+                </div>
+<!-- InstanceBeginEditable name="content" -->
+                    	<ul>
+                    		<li><a href="#Workings">How GVMax works</a></li>
+                    		<li><a href="#Setup">GVMax Setup</a></li>
+                    			<ul><li><a href="#Filters">Email Filters</a></li></ul>
+                    		<li><a href="#UsingGVMax">Using GVMax</a></li>
+                    		<ul>
+	                    		<li><a href="#IMFeatures">IM Features</a></li>
+	                    			<ul>
+	                    				<li><a href="#IM_Help">Getting help</a></li>
+		                    			<li><a href="#IM_AddBuddy">Adding a buddy to your IM roster</a></li>
+		                    			<li><a href="#IM_BuddyInfo">Retrieving buddy details</a></li>
+		                    			<li><a href="#IM_MakingCallsToBuddy">Calling a buddy via GoogleVoice</a></li>
+	    	                			<li><a href="#IM_MakingAnyCall">Calling any number using GoogleVoice</a></li>
+	        	            			<li><a href="#IM_SelectingForwardPhone">Selecting what Phone to use for GoogleVoice calls</a></li>
+	            	        			<li><a href="#IM_SendingBulkSMS">Sending SMS to groups of people</a></li>
+	            	        		</ul>
+    	                		<li><a href="#EmailFeatures">Email Features</a></li>
+    	                			<ul>
+    	                				<li><a href="#Email_Reply">Replying to email SMS notifications</a></li>
+    	                				<li><a href="#Email_SendSMS">Sending SMS via email</a></li>
+    	                				<li><a href="#Email_BulkSMS">Sending SMS to groups via email</a></li>
+    	                			</ul>
+    	                		<li><a href="#ProwlFeatures">Prowl Features</a></li>
+    	                		<li><a href="#HowlFeatures">Howl Features</a></li>
+    	                		<li><a href="#PostFeatures">HTTP Post Features</a></li>
+    	                		<li><a href="#TwitterFeatures">Twitter Features</a></li>
+    	                		<li><a href="#SMSFeatures">SMS Features</a></li>
+    	                		<li><a href="#AutoRespondFeature">Auto Respond Feature</a></li>
+        	            	</ul>
+        	            	<li><a href="#Tips">Tips and Tricks</a></li>
+        	            		<ul>
+        	            			<li><a href="#Fallback">GTalk fallbacks</a></li>
+        	            		</ul>
+                    	</ul>
+                    	<hr/>
+                    	<h2><a name="Workings" id="Workings"></a>How GVMax works</h2>
+						<p>When you receive an SMS or a Voicemail on your Google Voice number you can ask Google to send you an email notification.
+						GVMax uses these email notifications from Google to extract the sms and voicemail and then sends you notifications.</p> 
+						<p>In order for GVMax to receive these emails, an email filter is created that forwards your Google Voice emails from your gmail
+						account to the GVMax server. If when signing up to GVMax you provide your google voice password these filters and other settings
+						are automatically created for you. If you don't then you will have to manually create these filters as described <a href="#Filters">below</a>.  
+						</p>
+						<p>GVMax can send you notifications even when you don't provide it your Google Voice password (with the exception of the SMS notifier).
+						But providing it with your password will make the whole experience alot more seamless. I take privacy and security very seriously (remember I am
+						also a user of GVMax) so you can review my <a href="../privacy/">privacy statement and security</a> precautions.						</p>
+<br/>
+						<hr/>                    	
+                    	<h2><a name="Setup" id="Setup"></a>GVMax Setup</h2>
+                    	Setting up GVMax is very simple. In most cases all you will need to do is provide GVMax with your Google Voice credentials during the signup process and it
+                    	will do the rest. In a small number of cases GVMax might not be able to automatically create the emails filters, for example if your Google Voice account is forwarding your
+                    	emails to non gmail based email address. 
+                    	<p>If you choose not to provide GVMax your credentials you will need to follow the instructions in the following section to manually create the necessary filters.</p>
+                    	<h3><a name="Filters" id="Filters"></a>Email Filters</h3>
+                    	Creating email filters is easy. After signing up you will find a button on your account page 'Create GMail Filters' that you can click and have
+                    	GVMax create the filters automatically. This process requires your google voice password. If you do not want to provide it then please follow the
+                    	simple instructions found in the <a href="../filters">Manually installing filters</a> page.
+                    	<br/>
+                    	<br/>
+                    	<hr/>
+               	        <h2><a name="UsingGVMax" id="UsingGVMax"></a>Using GVMax</h2>
+               	        By default after signing up you will start to receive notifications (either GTalk notifications or email notifications depending on how you signed up).
+               	        From your account page you will be able to change how GVMax sends you notifications and the type of notifications you get (SMS,Voicemail etc). The account
+               	        page contains detailed help on the various settings.
+               	        <br/>
+               	        <br/>
+               	        <hr/> 
+               	        <h3><a name="IMFeatures" id="IMFeatures"></a>IM Features</h3>
+               	        <p>GVMax can send you new SMS and Voicemail notifications to your IM application. The only requirement is that your IM program support GoogleTalk.</p>
+               	        <p>When a new SMS arrives from one of your contacts (say this contact is called MyFriend and his number is 12345678) you will receive an IM chat message
+               	        from a IM buddy called MyFriend (note if MyFriend was not in your GoogleContacts then the buddy name will be called 12345678)</p>
+               	        <p>Replying to the chat message will cause the reply to be sent to MyFriend via an SMS to his number (12345678)</p>
+               	        <h4><a name="IM_Help" id="IM_Help"></a>Getting help</h4>
+               	        <p></p>There are many more features provided by GVMax when using an IM program. To get an overview of them you can
+               	        type <span class="style1">gg</span> while chatting with any of your GVMax buddies. This will display a summary of the available commands which are described
+               	        in more detail below.
+               	        
+               	        <h4><a name="IM_AddBuddy" id="IM_AddBuddy"></a>Adding a buddy to your IM roster</h4>
+               	        <p>Whenever you receive an SMS or voicemail from someone they are automatically added to your IM roster (The 'roster' means your list of IM buddies).
+               	        But sometimes you might want to add a new number manually, there are two ways of doing this.               	        </p>
+               	        <ol>
+               	          <li>Using your IM program add a new buddy with the following address {number}@mygvmax.appspotchat.com . Where number is the phone number you are adding (for US numbers
+               	           do not add country code (eg if the number was (858) 123-4567 you should use 8581234567@mygvmax.appspotchat.com (no dashes or spaces))). </li>
+       	                  <li>Alternatively start a chat with any existing GVMax buddy and type <br />
+   	                        <span class="style1">gga {number}</span> (where number follows the same format as above)</li>
+   	                	</ol>
+
+               	        <h4><a name="IM_BuddyInfo" id="IM_BuddyInfo"></a>Retrieving buddy details</h4>
+               	        In the chat window type <span class="style1">ggi</span> if your buddy can be found in your Google contacts, GVMax will display his email addresses and 
+               	        phone numbers.
+
+   	                	
+       	                <h4><a name="IM_SelectingForwardPhone" id="IM_SelectingForwardPhone"></a>Selecting which phone to use for GoogleVoice calls</h4>
+       	                <p>When calling numbers via GoogleVoice you need to specify which phone Google should call you on to connect you (forwarding phone). 
+       	                If you have more than one phone tied to your google voice number you need to select which one should be used. 
+       	                You can do this through your application's web interface or from within your IM program. </p>
+       	                <p>Firstly in your IM chat window type <span class="style1">ggp</span> 
+       	                This will display a list of the available forwarding phones, 
+       	                take note of the index number on the left hand side for the phone you would like to use, 
+       	                then type <span class="style1">ggp {index}</span>. 
+       	                Now when you call a contact that phone will ring and you will get connected via GoogleVoice.</p>
+   	                
+       	                <h4><a name="IM_MakingCallsToBuddy" id="IM_MakingCallsToBuddy"></a>Calling a buddy via GoogleVoice</h4>
+       	                <p>In the chat window simply type <span class="style1">ggc</span></p>. GVMax will place the call and your forwarding phone should ring, pick it up and you will
+       	                get connected to your buddy.
+       	                
+       	                <h4><a name="IM_MakingAnyCall" id="IM_MakingAnyCall"></a>Calling any number using GoogleVoice</h4>
+       	                <p>In any GVMax chat window type <span class="style1">ggc {number}</span></p>. As above your forwarding phone should ring and connect you to that number.
+       	                
+       	                <h4><a name="IM_SendingBulkSMS" id="IM_SendingBulkSMS"></a>Sending SMS to groups of people</h4>
+       	                <p>With GVMax you can send SMS to groups of people. The grouping is controlled by your Google Contacts groups. </p>
+       	                <p>Type <span class="style1">ggr</span> this will display your list of groups, take note of the index number for the group you would like to send the SMS to, 
+       	                then type <span class="style1">ggr {index}</span> this will cause a new buddy to be added to your roster. The buddy will have the same name as the group. 
+       	                When you send an IM to this buddy an SMS will be sent to each of the members in this group. GVMax will send you a reply IM stating exactly who was sent an SMS.</p>
+       	                You can list the members of a groups by typing <span class="style1">ggrl {index}</span> where again the index comes from the <span class="style1">ggr</span> 
+   	        			<br/>
+   	        			<br/>
+   	        			<hr/>
+   	                    <h3><a name="EmailFeatures" id="EmailFeatures"></a>Email Features</h3>
+   	                    <h4><a name="Email_Reply" id="Email_Reply"></a>Replying to email SMS notifications</h4>
+   	                    <p>All you need to do is to reply to the email and an SMS containing your reply is sent to the person who sent you the original SMS.</p>
+   	                    <h4><a name="Email_SendSMS" id="Email_SendSMS"></a>Sending SMS via email</h4>
+   	                    <p>You can send SMS to any number via email simply by sending an email to {number}@my.gvmax.com where {number} is the number to send the SMS to. 
+   	                    The body of your email will be sent as an SMS to the given number.</p>
+   	                    For security reasons GVMax will only accept emails coming from your google voice email address or gtalk email address.<br/>
+   	                    If you would like to send the email from another email address you will need to send it to {apikey}-{number}@my.gvmax.com. Where {apikey} is your
+   	                    api key which is displayed in your account page.
+   	                    <h4><a name="Email_BulkSMS" id="Email_BulkSMS"></a>Sending SMS to groups via email</h4>
+   	                    <p>You can send SMS to groups of people. The grouping is defined by your Google Contacts groups. 
+   	                    To do so simply send an email to {apikey}-{group}@mygvmax.appspotmail.com where {apikey} is your api key which is displayed in your account page and {group} is the group name.</p>
+   	                    <br/>
+   	                    <hr/>
+
+   	                    <h3><a name="ProwlFeatures" id="ProwlFeatures"></a>Prowl Features</h3>
+   	                    Not much to say, provide your Prowl API keys and start getting Prowl notifications.
+   	                    You can also specify the what prowl priorities SMS and Voicemail notifications should be sent with.
+   	                    <br/>
+   	                    NOTE: You can send notifications to multiple Prowl clients, by providing a comma separated list of prowl api keys.
+						<br/>
+						<br/>
+						<hr/>
+						
+   	                    <h3><a name="HowlFeatures" id="HowlFeatures"></a>Howl Features</h3>
+   	                    Again not much to this. Enter your Howl username and password and GVMax will send you Howl notifications. 
+   	                    In the future I may add support for specifying icons, app-name, priorities etc.
+						<br/>
+						<br/>
+						<hr/>
+						
+   	                    <h3><a name="PostFeatures" id="PostFeatures"></a>Http Post Features</h3>
+   	                    Http Post notifications is aimed at those who wish to create applications that can receive Google Voice SMS and Voicemail.
+   	                    Whenever an SMS or Voicemail is received GVMax will perform a post. Below is a description of the post parameters. 
+   	                    <br/>NOTE: You can send notifications to multiple urls by providing a comma separated list of urls. For a more complete API
+   	                    you may want to check out the <a href="../developers/">Developers section</a>.
+      <br/>
+   	                    <br/>
+   	                    SMS Notifications
+   	                    <table border="1">
+   	                    	<thead>
+   	                    		<tr>
+   	                    			<th>Parameter Name</th>
+   	                    			<th>Parameter Value</th>
+   	                    		</tr>
+   	                    	</thead>
+   	                    	<tbody>
+   	                    		<tr>
+   	                    			<td>type</td>
+   	                    			<td>SMS</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>receiver</td>
+   	                    			<td>Google Voice Email of SMS receiver</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>number</td>
+   	                    			<td>The phone number</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>contact</td>
+   	                    			<td>The contact name if available, or number otherwise</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>text</td>
+   	                    			<td>SMS text</td>
+   	                    		</tr>
+   	                    	</tbody>
+   	                    </table> 
+   	                    
+   	                    <br/>
+   	                    <br/>
+   	                    Voicemail Notifications
+   	                    <table border="1">
+   	                    	<thead>
+   	                    		<tr>
+   	                    			<th>Parameter Name</th>
+   	                    			<th>Parameter Value</th>
+   	                    		</tr>
+   	                    	</thead>
+   	                    	<tbody>
+   	                    		<tr>
+   	                    			<td>type</td>
+   	                    			<td>VM</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>receiver</td>
+   	                    			<td>Google Voice Email of SMS receiver</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>number</td>
+   	                    			<td>The phone number</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>contact</td>
+   	                    			<td>The contact name if available, or number otherwise</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>text</td>
+   	                    			<td>Voicemail transcript</td>
+   	                    		</tr>
+   	                    		<tr>
+   	                    			<td>link</td>
+   	                    			<td>URL to voicemail recording</td>
+   	                    		</tr>
+   	                    	</tbody>
+   	                    </table> 
+   	                    <br/>
+   	                    <hr/>
+						<h3><a name="TwitterFeatures" id="TwitterFeatures"></a>Twitter Features</h3>
+						The current Twitter related features are still experimental. Right now you can 
+						specify a Twitter account which GVMax will then send a direct message to whenever
+						an SMS or Voicemail is received. Replying to these direct messages will NOT cause
+						an SMS reply. Twitter support is being expanded so watch out for some news soon.
+                    	<br/>
+                    	<br/>
+                    	<hr/>
+						<h3><a name="SMSFeatures" id="SMSFeatures"></a>SMS Features</h3>
+						GVMax can also send you SMS notifications! This may seem strange initially but it has its uses.
+						In particular GVMax can send SMS notifications for a group of numbers (defined by a Google Contacts group).
+						<br/>
+						Using this feature you can make your google voice number act as a communications hub. Take me as an example
+						I have a google voice number which I tied to my 'Family' group. Whenever I send an sms to this number all
+						members of my family receive it. In tern their replies are sent to all other members of the group.
+						<br/>
+						<hr/>
+						<h3><a name="AutoRespondFeature" id="AutoRespondFeature"></a>Auto Respond Feature</h3>
+						If you are away with no internet access you can get GVMax to automatically respond to SMS and Voicemail (voice mail from mobile
+						numbers only). Under the Notifiers dialog you will find a field that allows you to turn this feature on/off and specify the
+						auto response message.
+						<br/>
+						<hr/>
+                    	<h2><a name="Tips" id="Tips"></a>Tips and Tricks</h2>
+                    	<h3><a name="Fallback" id="Fallback"></a>GTalk fallbacks</h3>
+                    	Some IM clients particularly on the iPhone sometimes will logout a user without any indications.
+                    	This may cause the user to not get the notification. 
+                    	<br/>
+                    	To deal with this issue you should specify either a Prowl api key or an email address in your account page (you don't need to
+                    	enable them). If GVMax notices that you are not logged into GTalk (and GTalk is your only enabled notifier) it will fallback to
+                    	either Prowl or email. What this means is that in general you will be getting GTalk notifications only, but if for some reason you
+                    	get logged out of GTalk, then a Prowl or email message will be sent.
+				
+<!-- InstanceEndEditable -->
+                <br/>		
+                <center>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="7949967">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                </center>
+			</div>
+            
+       		<div id="footer">
+			  Copyright &copy; 2009/10 GVMax. <a href="../privacy/">Privacy and Security</a><br/>
+				Follow GVMax on <a href="http://twitter.com/gvmax" target="_blank">Twitter</a> or on my <a href="http://gvmax-at.blogspot.com/" target="_blank">Blog</a>.
+			</div>	
+            
+       		<div id="messageBox" style="display:none">
+				<span id="messageBox-msg"></span>
+			</div>
+
+            <div id="waitBox" style="display:none">
+                <p id="waitBox-msg"></p>
+                <div id="progressbar"></div>
+            </div>	
+
+			<div id="forgotPasswordDialog" title="Password Retrieval" style="display:none">
+				<form id="forgotPasswordForm" method="post">
+					<div>
+						<label for="email">Your account's email address</label>
+						<input id="email" name="email" type="text"/>
+					</div>
+					<div>
+						<input id="forgotPasswordButton" type="submit" value="Submit"/>
+						<input id="forgotPasswordCancelButton" type="button" value="Cancel" />
+					</div>
+				</form>
+			</div>
+                
+	  </div>
+    </div>    
+    
+	<script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-10570095-1");
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>	
+    
+</body>
+
+<!-- InstanceEnd --></html>

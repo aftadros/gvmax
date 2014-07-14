@@ -1,0 +1,64 @@
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXISTS users (
+  email varchar(400) NOT NULL,
+  pin varchar(256) NOT NULL,
+  gTalkEmail varchar(400) DEFAULT NULL,
+  user longtext,
+  PRIMARY KEY (email)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+CREATE INDEX pinIndex on users (pin);
+CREATE INDEX gTalkEmailIndex on users (gTalkEmail);
+
+DROP TABLE IF EXISTS stats;
+CREATE TABLE IF NOT EXISTS stats (
+  email varchar(400) NOT NULL,
+  pin varchar(256) NOT NULL,
+  smsInCount int(11) NOT NULL,
+  vmInCount int(11) NOT NULL,
+  mcInCount int(11) NOT NULL,
+  emailInCount int(11) NOT NULL,
+  gTalkCount int(11) NOT NULL,
+  smsOutCount int(11) NOT NULL,
+  apiCount int(11) NOT NULL,
+  errorCount int(11) NOT NULL,
+  invalidEmailCount int(11) NOT NULL,
+  fallbackCount int(11) NOT NULL,
+  PRIMARY KEY (email)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+DROP TABLE IF EXISTS blacklist;
+CREATE TABLE IF NOT EXISTS blacklist (
+  value varchar(400) NOT NULL,
+  PRIMARY KEY (value)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+DROP TABLE IF EXISTS apiQueue;
+CREATE TABLE IF NOT EXISTS apiQueue (
+	id BIGINT NOT NULL AUTO_INCREMENT,
+	enqueuedDate BIGINT NOT NULL,
+	payload longtext,
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+DROP TABLE IF EXISTS smtpQueue;
+CREATE TABLE IF NOT EXISTS smtpQueue (
+	id BIGINT NOT NULL AUTO_INCREMENT,
+	enqueuedDate BIGINT NOT NULL,
+	payload longtext,
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;
+
+DROP TABLE IF EXISTS xmppQueue;
+CREATE TABLE IF NOT EXISTS xmppQueue (
+	id BIGINT NOT NULL AUTO_INCREMENT,
+	enqueuedDate BIGINT NOT NULL,
+	payload longtext,
+	PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_cs;

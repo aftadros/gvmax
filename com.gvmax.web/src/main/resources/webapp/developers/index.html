@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/MainTemplate.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="GVMax for Google Voice" />
+<meta name="keywords" content="gvmax, google voice" />
+<script type="text/javascript" src="../js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.js"></script>
+<script type="text/javascript" src="../js/jquery.tooltip.min.js"></script>
+<script type="text/javascript" language="javascript" src="../js/gvmax.js"></script>
+<script type="text/javascript" language="javascript" src="../js/login_1.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery.tooltip.css" />
+<link rel="stylesheet" type="text/css" href="../css/gvmax.css" />
+<style type="text/css">
+	label { width: 15em; float: left; }
+	label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+	.submit { margin-left: 12em; }
+</style>
+
+
+
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>GVMax</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="container">
+			<div id="header"></div>
+            <div id="loginLink">
+				<button id="loginButton" style="display:none">Login</button>
+       			<div id="loginDialog" title="Login" style="display:none">
+                    <form id="loginForm" action="">
+                        <p>
+                            <label for="email">Email Address</label>
+                            <input name="email" type="text"/>
+                        </p>
+                        <p>
+                            <label for="password">Password</label>
+                            <input name="password" type="password"/>
+                        </p>
+                        <p>
+                            <input type="submit" value="Login"/>
+                            <button id="loginCancelButton">Cancel</button>
+                        </p>
+                    </form>
+                    <div id="loginLinksDiv">
+                        <a id="singupLink" href="/signup">Sign up</a>
+                        <a id="forgotPasswordLink" href="/forgotPassword">Forgot Password</a>
+                    </div>
+            	</div>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a id="accountLink" href="../account/">My Account</a></li>
+                    <li><a title="User Manual" href="../manual/">User Manual</a></li>
+                    <li><a title="Support" href="../support/">Support</a></li>
+                    <li><a title="Developer" href="../developers/">Developers</a></li>
+                    <li><a title="On the news" href="../references/">On the news</a></li>
+                </ul>
+            </div>
+            <div id="content">
+            	<div id="serverDown" style="display:none">GVMax is currently under maintenance please come back later.</div>
+            	<div class="heading">
+<!-- InstanceBeginEditable name="heading" -->
+				Developer API
+<!-- InstanceEndEditable -->
+                </div>
+<!-- InstanceBeginEditable name="content" -->
+	<p>
+	GVMax licensed under <a href="http://www.gnu.org/licenses/gpl-3.0.txt" target="other"> the GPL v3 license</a>
+	<ul>
+		<li>Source code repository can be <a href="https://github.com/haninaguib/gvmax" target="other">found here.</a></li>
+		<li>The Maven site can be <a href="http://haninaguib.github.io/gvmax/" target="other">found here.</a></li>
+	</ul>
+	</p>
+	<hr/>
+	<p>
+	I am providing a developer api for those interested in developing applications that make use of Google Voice numbers. Right now it only
+	exposes send and receiving of SMS. In the future it will provide all the functionalities of GVMax.
+	</p>
+	<p>
+	There are two ways to interface with GVMax. If you only need to know when you receive SMS and Voicemail you can use
+	the Http Post notification mechanism. After creating an account specify a URL where you want the notifications to go.
+	</p>
+	<p>
+	I am also exposing an API for sending SMS. To use this API your GVMax account must be created with your GoogleVoice password.
+	</p>
+
+	<h3>API</h3>
+	<br/>
+	To send an SMS
+	<table border="1">
+		<tr>
+			<th>Parameter name</th>
+			<th>Parameter value</th>
+		</tr>
+		<tr>
+			<td>action</td>
+			<td>send</td>
+		</tr>
+			<td>email</td>
+			<td>your google voice email</td>
+		</tr>
+		</tr>
+			<td>apikey</td>
+			<td>your apikey (found in your account page)</td>
+		</tr>
+		</tr>
+			<td>number</td>
+			<td>number to send SMS to</td>
+		</tr>
+		</tr>
+			<td>text</td>
+			<td>SMS Text</td>
+		</tr>
+	</table>
+	<br/>
+	The response to this url will be an 'actionId' or an error message (errors always start with the work error).
+	GVMax does not wait for the SMS to be sent before returning from this request.
+	The actionId is used to identify this SMS send request when GVMax notifies you via a callback
+	about the status of this request.
+	<br/>
+	<br/>
+	To change your callback options
+	<table border="1">
+		<tr>
+			<th>Parameter name</th>
+			<th>Parameter value</th>
+		</tr>
+		<tr>
+			<td>action</td>
+			<td>callback</td>
+		</tr>
+			<td>email</td>
+			<td>your google voice email</td>
+		</tr>
+		</tr>
+			<td>apikey</td>
+			<td>your apikey (found in your account page)</td>
+		</tr>
+		</tr>
+			<td>callbackActive</td>
+			<td>(true/false) turn callbacks on / off</td>
+		</tr>
+		</tr>
+			<td>callbackUrl</td>
+			<td>The callback url (not required if callbackActive=false)</td>
+		</tr>
+	</table>
+	<br/>
+	<br/>
+	<h3>Callbacks</h3>
+	This is a list of the requests you will receive on your callback url. (ie This is what GVMax will call, not you. Your application should
+	listen to these callbacks).
+	<br/>
+	<br/>
+	SMS Sent notification
+	<table border="1">
+		<tr>
+			<th>Parameter Name</th>
+   	        <th>Parameter Value</th>
+		</tr>
+    		<tr>
+    			<td>type</td>
+    			<td>smsSent</td>
+    		</tr>
+    		<tr>
+    			<td>actionId</td>
+    			<td>The action identifier (from the send API call)</td>
+    		</tr>
+    		<tr>
+    			<td>error</td>
+    			<td>Only if an error happened and if so a description of the error</td>
+    		</tr>
+	</table>
+	<br/>
+ 	SMS Notifications
+    <table border="1">
+    	<thead>
+    		<tr>
+    			<th>Parameter Name</th>
+    			<th>Parameter Value</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td>type</td>
+    			<td>SMS</td>
+    		</tr>
+    		<tr>
+    			<td>receiver</td>
+    			<td>Google Voice Email of SMS receiver</td>
+    		</tr>
+    		<tr>
+    			<td>number</td>
+    			<td>The phone number</td>
+    		</tr>
+    		<tr>
+    			<td>contact</td>
+    			<td>The contact name if available, or number otherwise</td>
+    		</tr>
+    		<tr>
+    			<td>text</td>
+    			<td>SMS text</td>
+    		</tr>
+    	</tbody>
+    </table>
+
+    <br/>
+    Voicemail Notifications
+    <table border="1">
+    	<thead>
+    		<tr>
+    			<th>Parameter Name</th>
+    			<th>Parameter Value</th>
+    		</tr>
+    	</thead>
+    	<tbody>
+    		<tr>
+    			<td>type</td>
+    			<td>VM</td>
+    		</tr>
+    		<tr>
+    			<td>receiver</td>
+    			<td>Google Voice Email of SMS receiver</td>
+    		</tr>
+    		<tr>
+    			<td>number</td>
+    			<td>The phone number</td>
+    		</tr>
+    		<tr>
+    			<td>contact</td>
+    			<td>The contact name if available, or number otherwise</td>
+    		</tr>
+    		<tr>
+    			<td>text</td>
+    			<td>Voicemail transcript</td>
+    		</tr>
+    		<tr>
+    			<td>link</td>
+    			<td>URL to voicemail recording</td>
+    		</tr>
+    	</tbody>
+    </table>
+<!-- InstanceEndEditable -->
+                <br/>
+                <center>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="7949967">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                </center>
+			</div>
+
+       		<div id="footer">
+			  Copyright &copy; 2009/10 GVMax. <a href="../privacy/">Privacy and Security</a><br/>
+				Follow GVMax on <a href="http://twitter.com/gvmax" target="_blank">Twitter</a> or on my <a href="http://gvmax-at.blogspot.com/" target="_blank">Blog</a>.
+			</div>
+
+       		<div id="messageBox" style="display:none">
+				<span id="messageBox-msg"></span>
+			</div>
+
+            <div id="waitBox" style="display:none">
+                <p id="waitBox-msg"></p>
+                <div id="progressbar"></div>
+            </div>
+
+			<div id="forgotPasswordDialog" title="Password Retrieval" style="display:none">
+				<form id="forgotPasswordForm" method="post">
+					<div>
+						<label for="email">Your account's email address</label>
+						<input id="email" name="email" type="text"/>
+					</div>
+					<div>
+						<input id="forgotPasswordButton" type="submit" value="Submit"/>
+						<input id="forgotPasswordCancelButton" type="button" value="Cancel" />
+					</div>
+				</form>
+			</div>
+
+	  </div>
+    </div>
+
+	<script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-10570095-1");
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>
+
+</body>
+
+<!-- InstanceEnd --></html>

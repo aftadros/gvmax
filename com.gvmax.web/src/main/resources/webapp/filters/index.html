@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!-- InstanceBegin template="/Templates/MainTemplate.dwt" codeOutsideHTMLIsLocked="false" -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="GVMax for Google Voice" />
+<meta name="keywords" content="gvmax, google voice" />
+<script type="text/javascript" src="../js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.js"></script> 		
+<script type="text/javascript" src="../js/jquery.tooltip.min.js"></script>		
+<script type="text/javascript" language="javascript" src="../js/gvmax.js"></script>
+<script type="text/javascript" language="javascript" src="../js/login_1.js"></script>
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery-ui-1.8.16.custom.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="../css/jquery.tooltip.css" />
+<link rel="stylesheet" type="text/css" href="../css/gvmax.css" />
+<style type="text/css">
+	label { width: 15em; float: left; }
+	label.error { float: none; color: red; padding-left: .5em; vertical-align: top; }
+	.submit { margin-left: 12em; }
+</style>
+
+
+
+<!-- InstanceBeginEditable name="doctitle" -->
+<title>GVMax</title>
+<!-- InstanceEndEditable -->
+<!-- InstanceBeginEditable name="head" -->
+<!-- InstanceEndEditable -->
+</head>
+
+<body>
+	<div id="wrap">		
+		<div id="container">
+			<div id="header"></div>
+            <div id="loginLink">
+				<button id="loginButton" style="display:none">Login</button> 
+       			<div id="loginDialog" title="Login" style="display:none">
+                    <form id="loginForm" action="">
+                        <p>
+                            <label for="email">Email Address</label>
+                            <input name="email" type="text"/>
+                        </p>
+                        <p>
+                            <label for="password">Password</label> 
+                            <input name="password" type="password"/>
+                        </p>
+                        <p>
+                            <input type="submit" value="Login"/>
+                            <button id="loginCancelButton">Cancel</button>
+                        </p> 
+                    </form>
+                    <div id="loginLinksDiv">
+                        <a id="singupLink" href="/signup">Sign up</a>
+                        <a id="forgotPasswordLink" href="/forgotPassword">Forgot Password</a>
+                    </div>
+            	</div>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li><a href="../">Home</a></li>
+                    <li><a id="accountLink" href="../account/">My Account</a></li>
+                    <li><a title="User Manual" href="../manual/">User Manual</a></li>
+                    <li><a title="Support" href="../support/">Support</a></li>
+                    <li><a title="Developer" href="../developers/">Developers</a></li>
+                    <li><a title="On the news" href="../references/">On the news</a></li>
+                </ul>
+            </div>
+            <div id="content">
+            	<div id="serverDown" style="display:none">GVMax is currently under maintenance please come back later.</div>
+            	<div class="heading"> 
+<!-- InstanceBeginEditable name="heading" -->
+<!-- InstanceEndEditable -->
+                </div>
+<!-- InstanceBeginEditable name="content" -->
+	<div class="heading">Setting up email filters</div>
+	<p>
+	When you receive an SMS or a Voicemail you can ask Google to send you an email. In order for 
+	GVMax to work, these emails from Google must be sent to GVMax. This is done via email forwarding.
+	The forwarding is done by creating an Email filter.</p>
+	<p>
+	This page describes the steps you need to perform if you are not logging in to GVMax using your
+	google voice password. When using your Google voice password all of this is should be done by GVMax automatically.	</p>
+	<p>NOTE: You can still get GVMax to automatically create these filters even if you registered without using your GoogleVoice password. In your account page you will find a 'Create Google Voice Filter' this will ask for your Google Voice password which will be used only for creating the filter, it is NOT stored at GVMax. (Note: GVMax can only create email filters on GMail accounts, the one attached to your Google Voice account).</p>
+	<p>
+	If you prefer to setup your account manual, please follow the instructions below.	</p>
+	<h3>Step 1 - Tell Google to send you emails when you receive SMS</h3>
+	<ol>	
+		<li>Login to your google voice account <a href="http://www.google.com/voice" target="_blank">http://www.google.com/voice</a></li>
+		<li>Once logged in follow this link <a href="https://www.google.com/voice#voicemailsettings" target="_blank">https://www.google.com/voice#voicemailsettings</a></li>
+		<li>Check the 'Email the message to' check box</li>
+		<li>Check the 'Forward SMS messages to my email' checkbox</li>
+		<li>Click 'Save Changes' button</li>
+	</ol>
+	<h3>Step 2- Forward Google's emails to GVMax</h3>
+	You will need to create an email filter at the account where Google Voice is forwarding his emails to.
+	This is usually your GMail account. 
+	The email filter should forward any email from *txt.voice.google.com OR voice-noreply@google.com to your 
+	forwarding address. If you are using GMail then you can follow the following detailed steps.
+	<ol>
+		<li>Login to your gmail account <a href="http://mail.google.com" target="_blank">http://mail.google.com</a></li>
+		<li>Once logged in follow this link <a href="https://mail.google.com/mail/#settings/filters" target="_blank">https://mail.google.com/mail/#settings/filters</a></li>
+		<li>Click on the 'Create a new filter' link at the bottom of the Settings section.</li>
+		<li>Enter the information shown on the following image</li>
+		<li>In the 'From' text field enter '<b>txt.voice.google.com OR voice-noreply@google.com</b>'</li>
+		<li>Click on the 'Next Step >>' button</li>
+		<li>Check the 'Forward it to:' checkbox and enter your forwarding address in the text field beside this checkbox (you can find your forwarding address in your account page).</li>
+		<li>Check the 'Skip the Inbox'</li>
+		<li>Click the 'Create Filter' button.</li>
+	</ol>
+	<h3>Note</h3>
+	When creating the filter Google may ask that the forwarding email address be verified. 
+	GVMax will automatically authorize the email address, but it means you will have to go throught Step 2 twice. 
+	The first time to you will get stuck as Google tells you it has sent an email to xxxx@my.gvmax.com for verification. Wait a minute or so
+	for GVMax to receive the email and automatically verify it and start over. The second time around you will be able to select the email address 
+	without the need for verification.<!-- InstanceEndEditable -->
+                <br/>		
+                <center>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="7949967">
+                    <input type="image" src="https://www.paypal.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                </form>
+                </center>
+			</div>
+            
+       		<div id="footer">
+			  Copyright &copy; 2009/10 GVMax. <a href="../privacy/">Privacy and Security</a><br/>
+				Follow GVMax on <a href="http://twitter.com/gvmax" target="_blank">Twitter</a> or on my <a href="http://gvmax-at.blogspot.com/" target="_blank">Blog</a>.
+			</div>	
+            
+       		<div id="messageBox" style="display:none">
+				<span id="messageBox-msg"></span>
+			</div>
+
+            <div id="waitBox" style="display:none">
+                <p id="waitBox-msg"></p>
+                <div id="progressbar"></div>
+            </div>	
+
+			<div id="forgotPasswordDialog" title="Password Retrieval" style="display:none">
+				<form id="forgotPasswordForm" method="post">
+					<div>
+						<label for="email">Your account's email address</label>
+						<input id="email" name="email" type="text"/>
+					</div>
+					<div>
+						<input id="forgotPasswordButton" type="submit" value="Submit"/>
+						<input id="forgotPasswordCancelButton" type="button" value="Cancel" />
+					</div>
+				</form>
+			</div>
+                
+	  </div>
+    </div>    
+    
+	<script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+        try {
+            var pageTracker = _gat._getTracker("UA-10570095-1");
+            pageTracker._trackPageview();
+        } catch(err) {}
+    </script>	
+    
+</body>
+
+<!-- InstanceEnd --></html>

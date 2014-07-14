@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright (c) 2013 Hani Naguib.
+  All rights reserved. This program and the accompanying materials
+  are made available under the terms of the GNU Public License v3.0
+  which accompanies this distribution, and is available at
+  http://www.gnu.org/licenses/gpl.html
+  
+  Contributors:
+      Hani Naguib - initial API and implementation
+-->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	version="2.5">
+
+	<servlet>
+		<servlet-name>MailOut</servlet-name>
+		<servlet-class>com.gvmax.relay.servlets.MailOutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MailOut</servlet-name>
+		<url-pattern>/mailOut</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>XmppOut</servlet-name>
+		<servlet-class>com.gvmax.relay.servlets.XmppOutServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>XmppOut</servlet-name>
+		<url-pattern>/xmppOut</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>XmppIn</servlet-name>
+		<servlet-class>com.gvmax.relay.servlets.XmppInServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>XmppIn</servlet-name>
+		<url-pattern>/_ah/xmpp/message/chat/</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>

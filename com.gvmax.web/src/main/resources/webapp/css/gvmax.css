@@ -1,0 +1,145 @@
+.ui-progressbar-value {
+	background-image: url(images/pbar-ani.gif);
+}
+
+body {
+	background:#BEC3C6 url(../images/bg.jpg) repeat-x;
+	margin:0;
+	padding:0;
+
+	font: 70% verdana, sans-serif;
+	line-height: 1.6;
+	color:#555;
+	text-align: center;
+}
+
+h3 {
+	margin: 0px;
+	margin-top: 5px;
+}
+
+a { color:#537287; }
+a:hover { text-decoration:underline; }
+
+.heading {
+	font-size:28px;
+	font-family: Georgia, "Times New Roman",Times, serif;
+	color: #415b6c;
+	margin: 0px;
+	margin-bottom: 10px;
+}
+
+label.error { float: right; color: red; padding-left: .5em; vertical-align: top; }
+input.error { border-color: red; }
+.invalidEntry { border-color: red; }
+
+/* ************************************** */
+/* LAYOUT
+/* ************************************** */
+
+#wrap {
+	background:url(../images/light.gif) center top no-repeat;
+	padding:20px 0;
+}
+
+#container {
+   width: 938px;
+   text-align: left;
+   margin: auto;
+}
+
+#header {
+	background:url(../images/header.png) 0 0 no-repeat;
+	height: 91px;
+}
+
+#loginLink {
+	float: right;
+	margin: 6px;
+	text-align: right;
+}
+
+#loginDialog {
+	text-align: left;
+	padding: 10px;
+	background-color: white;
+}
+
+#loginForm span {
+	padding-right: 10px;
+}
+
+#forgotPasswordLink {
+	padding-left: 20px;
+}
+
+#content {
+	background: #ffffff;
+	padding: 25px;
+}
+
+#footer {
+	clear: both;
+	background:url(../images/footer.png) 0 0 no-repeat;
+	height: 57px;
+	padding-top:15px;
+	text-align: center;
+
+	color: #ffffff;
+	font-size:10px;
+}
+
+#footer a {
+	color: #ffffff;
+	font-size:10px;
+}
+
+/* ************************************** */
+/*  NAVIGATION                            */
+/* ************************************** */
+
+#nav {
+	background:url(../images/navmenu.png) 0 0 repeat-x;
+	height: 44px;
+}
+
+#nav ul {
+	margin:0;
+	padding: 10px;
+}
+
+#nav li {
+	display:inline;
+	list-style:none;
+	border-right: 1px solid #BEC3C6;
+	width: 100px;
+	margin-top: 20px;
+	padding-right: 20px;
+	padding-left: 20px;
+	text-align: center;
+	color: #000000;
+	font-weight: bold;
+}
+
+#nav a {
+	color:#537287;
+	text-decoration:none;
+}
+
+#nav a:hover {
+	text-decoration:underline;
+}
+.small {
+	font-size: 90%;
+}
+
+.smallLabel {
+	font-size: 90%;
+	padding-left: 20px;
+}
+
+.dashes {
+	border-top: 1px dotted #000000;
+	border-bottom: 0;
+	margin-top: 5px;
+}
